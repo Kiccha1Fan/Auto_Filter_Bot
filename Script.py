@@ -296,7 +296,7 @@ Nᴀᴍᴇ : {}
 
 Mᴇꜱꜱᴀɢᴇ : <b>{}</b>"""
     
-    CAPTION = """<b><a href="https://t.me/">{file_name}</a></b>\n\n<b>⚜️ Powered By : <a href="https://t.me/AK_Kiccha1">[ AK ]</a></b>"""
+    CAPTION = """<b><a href="https://t.me/">{file_name}</a></b>\n\n<b>⚜️ ⚡️Join :- @AK_Kiccha1</b>"""
 
     
     MOVIE_UPDATE_NOTIFY_TXT = """
