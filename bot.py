@@ -5,6 +5,7 @@ from pyrogram.raw.all import layer
 import time
 from pyrogram.errors import FloodWait
 import asyncio
+import aiohttp 
 from datetime import date, datetime
 from pathlib import Path
 import importlib.util
@@ -35,6 +36,16 @@ logging.getLogger("pymongo").setLevel(logging.WARNING)
 
 botStartTime = time.time()
 
+async def keep_alive_ping():
+    while True:
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get("https://auto-filter-bot-1-8isb.onrender.com/") as resp:  # Replace with your real app URL
+                    print(f"Pinged self: {resp.status}")
+        except Exception as e:
+            print(f"Ping error: {e}")
+        await asyncio.sleep(60)
+        
 def dreamxbotz_plugins_handler(app, plugins_dir: str | Path = "plugins", package_name: str = "plugins") -> list[str]:
     plugins_dir = Path(plugins_dir)
     loaded_plugins: list[str] = []
@@ -124,6 +135,8 @@ async def dreamxbotz_start():
     bind_address = "0.0.0.0"
     await web.TCPSite(app, bind_address, PORT).start()
     dreamxbotz.loop.create_task(keep_alive())
+    asyncio.create_task(keep_alive_ping())
+
     await idle()
     
 if __name__ == '__main__':
